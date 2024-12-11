@@ -3,15 +3,15 @@ Author: Grace Trainor
 
 # Preview 
 
-Following is a data science project that dives into the relationship between the recipe tag '`healthy`', other tags, and other nutrional features, such as sodium. 
+Following is a data science project that dives into the relationship between the recipe tag `healthy`, other tags, and other nutrional features, such as sodium. 
 
 # Introduction
 
-This project focuses on understanding patterns in two datasets: `recipe` and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
+This project focuses on understanding patterns in two datasets: `recipe` and `ratings` posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is `healthy`?
 This question matters because understanding the attributes of healthy recipes can empower individuals to make informed choices, leading to better health outcomes. Additionally, it can help food enthusiasts, nutritionists, and recipe creators craft meals that align with diverse dietary needs and preferences. 
 
 ### Recipe:
-> The first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
+> The first dataset, which has `83782` rows and `12` columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
 
 | Name                          |    ID  | Minutes | Contrib ID | Submitted   | Tags                              | Nutrition                  | Steps | Ingredients Count | Description                                 |
 |-------------------------------|--------|---------|------------|-------------|-----------------------------------|---------------------------|-------|-------------------|---------------------------------------------|
@@ -23,7 +23,7 @@ This question matters because understanding the attributes of healthy recipes ca
 
 
 ### Interactions: 
-> The second dataset, which has 731927 rows and 5 columns. Each row represents a review for a recipe. 
+> The second dataset, which has `731927` rows and `5` columns. Each row represents a review for a recipe. 
 
 | User ID   | Recipe ID  | Date       | Rating | Review                                               |
 |-----------|------------|------------|--------|-----------------------------------------------------|
@@ -34,7 +34,7 @@ This question matters because understanding the attributes of healthy recipes ca
 | 2000192946| 120345     | 2015-05-10 | 2      | Recipe too sweet! Use 1/3 cup sugar, not 2 cups.    |
 
 
-Provided these datasets, I am investigating whether a recipe with a 'healthy' tag will exhibit specific patterns in terms of the other tags and nutritional features that it is described by. As a result, I separated the values in the 'nutrition' column into individual columns, such as 'calories (#)', 'sugar (PDV)', and others. I additioinally created a 'healthy' column that consisted of True and Falses, true if one the recipes describing tags was 'healthy' and false if not. The most relevant columns for this question are 'tags', 'calories', 'sodium, 'minutes', 'n_steps', 'protein', 'rating', and 'healthy. 
+Provided these datasets, I am investigating whether a recipe with a `healthy` tag will exhibit specific patterns in terms of the other tags and nutritional features that it is described by. As a result, I separated the values in the `nutrition`  column into individual columns, such as 'calories (#)', 'sugar (PDV)', and others. I additioinally created a 'healthy' column that consisted of True and Falses, true if one the recipes describing tags was `healthy` and false if not. The most relevant columns for this question are `tags`, `calories` , `sodium` , `minutes` , `n_steps` , `protein` , `rating` , and '`healthy` . 
 
 This question is important because understanding these associations can help individuals better identify recipes that align with their dietary goals. It can also support recipe creators and platforms in improving categorization and recommendations for health-conscious users.
 
@@ -59,7 +59,7 @@ In order to properly use the datasets and discover accurate results, I performed
 8. Added a healthy-2 column
 > There were two different columns that contained the word'healthy', they were 'healthy' and 'healthy-2', so I did the same process for 'healthy-2'. This is a boolean column in which a true represents the tag 'healthy-2' being in the recipes' tags and false if not.
 
-Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying some of the columns in this dataset, as there are so many columns. 
+Our cleaned dataframe ended up with `234429` rows and `26` columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying some of the columns in this dataset, as there are so many columns. 
 
 | Name                      | ID      | Minutes | Contributor | Date       | Tags                               | Nutrition         | Steps | Description                                 | Ingredients                             | Rating | Review                                              |
 |---------------------------|---------|---------|-------------|------------|------------------------------------|-------------------|-------|---------------------------------------------|-----------------------------------------|--------|----------------------------------------------------|
@@ -70,7 +70,7 @@ Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the fir
 
 ### Univariate Analysis
 
-The bar chart below illustrates the average ratings for different tag combinations, with a focus on those receiving ratings of 4 and above. Looking specifically at the tags, 'vegetarian', 'low-fat', 'holiday', 'healthy-2', 'dessert','healthy'. The highest-ranked combinations were 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'. These combinations suggest that recipes which are both vegetarian and low in fat are highly rated, and adding the "healthy-2" tag further enhances the appeal. This is an interesting discovery and makes one wonder if there is a correlation, or at least connection, between 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'.
+The bar chart below illustrates the average ratings for different tag combinations, with a focus on those receiving ratings of 4 and above. Looking specifically at the tags, `vegetarian`, `low-fat`, `holiday`, `healthy-2`, `dessert`, `healthy`. The highest-ranked combinations were `vegetarian` and `low-fat`, as well as `vegetarian`, `low-fat`, and `healthy-2`. These combinations suggest that recipes which are both vegetarian and low in fat are highly rated, and adding the "healthy-2" tag further enhances the appeal. This is an interesting discovery and makes one wonder if there is a correlation, or at least connection, between `vegetarian` and `low-fat`, as well as `vegetarian`, `low-fat`, and `healthy-2`.
 <iframe
   src="assets/average_ratings_by_tag_combinations.html"
   width="800"
@@ -91,7 +91,7 @@ Below is an interesting pie chart visualizing the top 10 used tags and their fre
 
 #### Bivariate Analysis
 
-The scatter plot visualizes the relationship between Sodium and Protein content in recipes, categorized by the 'healthy' and 'healthy-2' tags. In the plot, recipes labeled as "healthy" (green) tend to cluster in regions with lower sodium levels and varying protein amounts, indicating that healthier recipes often prioritize low sodium content while maintaining a range of protein levels. The pattern suggests that lower sodium content is a consistent trait in recipes labeled as healthy, while protein varies more widely. Additionally there seems to be a greater amount of 'unhealthy' recipes in comparison to the 'healthy' recipes, as the red colors seems to outweight the green ones substantially so. 
+The scatter plot visualizes the relationship between Sodium and Protein content in recipes, categorized by the `healthy` and `healthy-2` tags. In the plot, recipes labeled as "healthy" (green) tend to cluster in regions with lower sodium levels and varying protein amounts, indicating that healthier recipes often prioritize low sodium content while maintaining a range of protein levels. The pattern suggests that lower sodium content is a consistent trait in recipes labeled as healthy, while protein varies more widely. Additionally there seems to be a greater amount of 'unhealthy' recipes in comparison to the 'healthy' recipes, as the red colors seems to outweight the green ones substantially so. 
 
 
 <iframe
@@ -103,7 +103,7 @@ The scatter plot visualizes the relationship between Sodium and Protein content 
 
 ### Interesting Aggregates
 
-The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as 'healthy' and 'unhealthy.' By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
+The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as `healthy` and `healthy-2`. By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
 
 | Nutrient        | False   | True    |
 |-----------------|---------|---------|
@@ -117,15 +117,16 @@ The pivot table provides a comparison of the average nutritional values, such as
 
 # Assessment of Missingness
 
-When looking at missingness, the columns with the main missing are 'rating', 'description,' and 'review.'
+When looking at missingness, the columns with the main missing are `rating`, `description`, `review`.
+
 
 ### NMAR Analysis
 
-I think the column 'review' in the dataset appears to be Not Missing At Random (NMAR), as its absence is likely tied to the behavior of individuals choosing not to leave a review. This pattern makes sense because people might not leave reviews for various reasons, such as lack of interest, forgetting, or having neutral feelings about the recipe. The missingness is therefore dependent on an underlying, unobserved factor related to the individual's decision-making process, making it NMAR rather than completely random.
+I think the column `review` in the dataset appears to be Not Missing At Random (NMAR), as its absence is likely tied to the behavior of individuals choosing not to leave a review. This pattern makes sense because people might not leave reviews for various reasons, such as lack of interest, forgetting, or having neutral feelings about the recipe. The missingness is therefore dependent on an underlying, unobserved factor related to the individual's decision-making process, making it NMAR rather than completely random.
 
 ### Missing Dependency
 
-After going through rating', 'description,' and 'review,' I thought about what was missing and why. I didn't believe that the descriptions being missing seemed to have a pattern and wondered if missing ratings did. So I investigated whether the missiness in the 'rating' column was dependent on the 'calories' columns because I could see how the negative connotation that society has with calories could relate to a lack of a review. 
+After going through `rating`, `description`, `review` I thought about what was missing and why. I didn't believe that the descriptions being missing seemed to have a pattern and wondered if missing ratings did. So I investigated whether the missiness in the `rating` column was dependent on the `calories` columns because I could see how the negative connotation that society has with calories could relate to a lack of a review. 
 
 **Null Hypothesis:** The missigness of ratings are MCAR
 
@@ -151,7 +152,7 @@ In summary, the empirical distribution visualizes the range of differences in me
 
 # Hypothesis Testing
 
-I was curious to see if recipes with tags 'healthy' or 'healthy-2' were rated differently than tags without them to help me further understand what could help me predict 'healthy.' To understand this query, I ran a hypothesis test. 
+I was curious to see if recipes with tags 'healthy' or 'healthy-2' were rated differently than tags without them to help me further understand what could help me predict `healthy`. To understand this query, I ran a hypothesis test. 
 
 **Null Hypothesis:** There is no difference in the ratings of recipes with the tags 'healthy' or 'healthy-2' compared to those without these tags.
 
@@ -161,7 +162,7 @@ I was curious to see if recipes with tags 'healthy' or 'healthy-2' were rated di
 
 **Significance Level:** 0.05
 
-The p-values for the "healthy" and "healthy-2" tags provide interesting insights into how these labels influence recipe ratings. The p-value for the "healthy" tag is 0.0, which is highly significant and leads us to reject the null hypothesis, indicating that recipes labeled as "healthy" are rated differently from those without the tag. This suggests that the "healthy" label does influence ratings, possibly due to consumer biases or associations with health-conscious behaviors. In contrast, the p-value for the "healthy-2" tag is 0.6281, which is not significant, meaning we fail to reject the null hypothesis for this tag. This suggests that the "healthy-2" label does not have a statistically significant effect on recipe ratings. The difference between the two results suggests that not all health-related tags are perceived equally, with the "healthy" label having a stronger impact on ratings than "healthy-2". This could reflect differing consumer perceptions of these tags, with the "healthy" label possibly carrying more weight in terms of expectations around nutrition and quality. Further research could explore why the "healthy" tag has a significant impact while the "healthy-2" tag does not, potentially investigating the characteristics of recipes with these labels or surveying users to understand their perceptions.
+The p-values for the `healthy`and `healthy-2` tags provide interesting insights into how these labels influence recipe ratings. The p-value for the `healthy` tag is 0.0, which is highly significant and leads us to reject the null hypothesis, indicating that recipes labeled as "healthy" are rated differently from those without the tag. This suggests that the "healthy" label does influence ratings, possibly due to consumer biases or associations with health-conscious behaviors. In contrast, the p-value for the "healthy-2" tag is 0.6281, which is not significant, meaning we fail to reject the null hypothesis for this tag. This suggests that the "healthy-2" label does not have a statistically significant effect on recipe ratings. The difference between the two results suggests that not all health-related tags are perceived equally, with the "healthy" label having a stronger impact on ratings than "healthy-2". This could reflect differing consumer perceptions of these tags, with the "healthy" label possibly carrying more weight in terms of expectations around nutrition and quality. Further research could explore why the "healthy" tag has a significant impact while the "healthy-2" tag does not, potentially investigating the characteristics of recipes with these labels or surveying users to understand their perceptions.
 
 # Framing a Prediction Problem
 
@@ -173,7 +174,7 @@ Additionally, fairness is assessed by comparing precision between low-rated and 
 
 # Baseline Model
 
-For my baseline model, I developed a Random Forest Classifier to predict whether a recipe is healthy based on its attributes. I split the data into training and test and the model used the features tags and healthy. I manually looked through all the unique tags and then picked out the ones I thought correlate the most to what most perceive as "healthy". I created a temporary dataframe that had these specific tags, such as 'low-calorie', as columns and each row consisted of a True if the recipe contained that tag and a False if not. 
+For my baseline model, I developed a Random Forest Classifier to predict whether a recipe is healthy based on its attributes. I split the data into training and test and the model used the features tags and healthy. I manually looked through all the unique tags and then picked out the ones I thought correlate the most to what most perceive as "healthy". I created a temporary dataframe that had these specific tags, such as `low-calorie`, as columns and each row consisted of a True if the recipe contained that tag and a False if not. 
 
 I one hot encoded the boolean values in these "healthy" tags and then trained my model. These features are all nominal.
 
@@ -185,11 +186,12 @@ The macro average metrics (precision, recall, and F1-score) are all low (around 
 
 For my final model, I used those same "healthy" tags and one hot encoded them as before.
 
-Yet I also used 'carbohydrates', 'protein', 'saturated_fat', 'sugar', 'total_fat'.
+Yet I also used `carbohydrates`, `protein`, `saturated_fat`, `sugar`, `total_fat`.
 
-For these features, 'carbohydrates', 'protein', 'saturated_fat', 'sugar', 'total_fat', I used STD Scalar to incorporate these numerical feautures in my dataset. I chose to use these values of nutrition because I knew that they have a relationship with health. Health is majorly about nutrition and incorportating these numerical nutrition values was essential. These features are critical in determining the healthiness of a recipe because they directly correlate with factors like energy content, metabolic impact, and disease prevention. I chose to use these nutritional features because they are directly tied to how health-conscious individuals might evaluate a recipe. These variables are commonly used in nutrition science and public health guidelines to categorize food as either healthy or unhealthy. By incorporating them into my model, I aim to predict whether a recipe is healthy based on its nutritional profile, which is essential for anyone seeking to improve their diet. 
 
-In addition to using the numerical features like 'sugar', 'sodium', and 'carbohydrates', I applied Binarizers to these features to help convert them into binary values, which can simplify the model’s interpretation and potentially enhance its performance. To determine the appropriate thresholds for binarization, I used the pivot table that I created earlier to analyze the mean values of sugar, sodium, and carbohydrates for both healthy and non-healthy recipes. This allowed me to see distinct patterns between the two groups, which helped me set the thresholds. For example, I found that the average carbohydrate content for healthy recipes was greater than 15 grams. Therefore, I set the threshold for the carbohydrate Binarizer at 15 grams. Recipes with carbohydrates greater than 15 grams would be classified as 1 (healthy), while recipes with carbohydrates less than or equal to 15 grams would be classified as 0 (non-healthy).
+For these features, `carbohydrates`, `protein`, `saturated_fat`, `sugar`, `total_fat`, I used STD Scalar to incorporate these numerical feautures in my dataset. I chose to use these values of nutrition because I knew that they have a relationship with health. Health is majorly about nutrition and incorportating these numerical nutrition values was essential. These features are critical in determining the healthiness of a recipe because they directly correlate with factors like energy content, metabolic impact, and disease prevention. I chose to use these nutritional features because they are directly tied to how health-conscious individuals might evaluate a recipe. These variables are commonly used in nutrition science and public health guidelines to categorize food as either healthy or unhealthy. By incorporating them into my model, I aim to predict whether a recipe is healthy based on its nutritional profile, which is essential for anyone seeking to improve their diet. 
+
+In addition to using the numerical features like `sugar`, `sodium`, `carbohydrates`, I applied Binarizers to these features to help convert them into binary values, which can simplify the model’s interpretation and potentially enhance its performance. To determine the appropriate thresholds for binarization, I used the pivot table that I created earlier to analyze the mean values of sugar, sodium, and carbohydrates for both healthy and non-healthy recipes. This allowed me to see distinct patterns between the two groups, which helped me set the thresholds. For example, I found that the average carbohydrate content for healthy recipes was greater than 15 grams. Therefore, I set the threshold for the carbohydrate Binarizer at 15 grams. Recipes with carbohydrates greater than 15 grams would be classified as 1 (healthy), while recipes with carbohydrates less than or equal to 15 grams would be classified as 0 (non-healthy).
 
 Similarly, I applied this technique to sugar and sodium levels, selecting thresholds based on the average values I observed in the pivot table. The purpose of binarizing these nutritional features was to transform continuous variables into categorical ones, making them easier for the model to process. This also helped highlight the relationship between certain levels of these nutrients and whether a recipe would be classified as healthy or not.
 
