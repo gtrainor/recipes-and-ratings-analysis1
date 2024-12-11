@@ -12,11 +12,25 @@ This question matters because understanding the attributes of healthy recipes ca
 
 Recipe: the first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe. 
 
-insert chart here
+| Name                          |    ID  | Minutes | Contrib ID | Submitted   | Tags                              | Nutrition                  | Steps | Ingredients Count | Description                                 |
+|-------------------------------|--------|---------|------------|-------------|-----------------------------------|---------------------------|-------|-------------------|---------------------------------------------|
+| 1 brownies in the world best | 333281 |      40 |     985201 | 2008-10-27  | ['desserts', 'chocolate']         | [138.4, 10, 50, 3, 19]    | 10    | 9                 | The most chocolatey, moist, dense brownies.|
+| 1 in Canada chocolate chip   | 453467 |      45 |    1848091 | 2011-04-11  | ['desserts', 'cookies']           | [595.1, 46, 211, 22, 51]  | 12    | 11                | Best chocolate chip cookies, cafeteria style.|
+| 412 broccoli casserole       | 306168 |      40 |      50969 | 2008-05-30  | ['side-dishes', 'vegetables']     | [194.8, 20, 36, 22]       | 6     | 9                 | Based on famous "green bean casserole."    |
+| Millionaire pound cake       | 286009 |     120 |     461724 | 2008-02-12  | ['desserts', 'cakes']             | [878.3, 63, 326, 39]      | 7     | 7                 | Super rich Southern-style pound cake.      |
+| 2000 meatloaf                | 475785 |      90 |    2202916 | 2012-03-06  | ['main-dish', 'meatloaf']         | [267.0, 30, 48, 29]       | 17    | 13                | Mediterranean-inspired meatloaf with eggs. |
+
 
 Interactions: the second dataset, which has 731927 rows and 5 columns. Each row represents a review for a recipe. 
 
-insert chart here
+| User ID   | Recipe ID  | Date       | Rating | Review                                               |
+|-----------|------------|------------|--------|-----------------------------------------------------|
+| 1293707   | 40893      | 2011-12-21 | 5      | Simple, delicious! Great for fall. Should double it!|
+| 126440    | 85009      | 2010-02-27 | 5      | Made Mexican topping. Everyone loved it at bunko!   |
+| 57222     | 85009      | 2011-10-01 | 5      | Cheddar bacon topping with black pepper. Yum!       |
+| 124416    | 120345     | 2011-08-06 | 0      | Strawberries instead of raspberries—didn't work.    |
+| 2000192946| 120345     | 2015-05-10 | 2      | Recipe too sweet! Use 1/3 cup sugar, not 2 cups.    |
+
 
 Provided these datasets, I am investigating whether a recipe with a 'healthy' tag will exhibit specific patterns in terms of the other tags and nutritional features that it is described by. As a result, I separated the values in the 'nutrition' column into individual columns, such as 'calories (#)', 'sugar (PDV)', and others. I additioinally created a 'healthy' column that consisted of True and Falses, true if one the recipes describing tags was 'healthy' and false if not. The most relevant columns for this question are 'tags', 'calories', 'sodium, 'minutes', 'n_steps', 'protein', 'rating', and 'healthy. 
 
@@ -45,7 +59,12 @@ In order to properly use the datasets and discover accurate results, I performed
 
 Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying the most essential columns for this project, as there are so many columns. 
 
-insert df here
+| Name                      | ID      | Minutes | Contributor | Date       | Tags                               | Nutrition         | Steps | Description                                 | Ingredients                             | Rating | Review                                              |
+|---------------------------|---------|---------|-------------|------------|------------------------------------|-------------------|-------|---------------------------------------------|-----------------------------------------|--------|----------------------------------------------------|
+| 1 brownies best ever      | 333281  | 40      | 985201      | 2008-10-27 | [desserts, brownies, snacks]      | [138.4, 10, 50...]| 10    | Rich, fudgy, moist, and chocolatey brownies.| [chocolate, butter, eggs, sugar...]     | 4      | Tasty but overly moist, sticks to foil.            |
+| 1 Canada choc chip cookies| 453467  | 45      | 1848091     | 2011-04-11 | [desserts, cookies, Canadian]      | [595.1, 46, 211...]| 12   | Soft, chewy chocolate chip cookies.         | [sugar, flour, choc chips...]           | 5      | Amazing cookies, big hit at yard sale!            |
+| 412 broccoli casserole    | 306168  | 40      | 50969       | 2008-05-30 | [side dishes, broccoli, easy]      | [194.8, 20, 6...] | 6    | Better than green bean casserole.           | [broccoli, cheese, soup...]             | 5      | Best broccoli casserole I've made. Flavorful!     |
+
 
 Univariate Analysis (delete this once i fix font)
 
@@ -83,15 +102,7 @@ Interesting Aggregates (delete this once i fix font)
 
 The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as 'healthy' and 'unhealthy.' By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
 
-| name                                 |   id   | minutes | contributor_id | submitted           | tags                           | nutrition            | n_steps | steps                           | description                    | ingredients                     | n_ingredients |
-|:-------------------------------------|:-------|:--------|:---------------|:--------------------|:-------------------------------|:---------------------|:--------|:--------------------------------|:-------------------------------|:-------------------------------|:--------------|
-| 1 brownies in the world...           | 333281 |      40 |          985201 | 2008-10-27 00:00:00 | ['60-minutes-or-less...']      | [138.4, 10.0, ...]   |      10 | ['heat the oven to 350f...']    | these are the most...          | ['bittersweet chocolate...']    |              9 |
-| 1 in canada chocolate...             | 453467 |      45 |         1848091 | 2011-04-11 00:00:00 | ['60-minutes-or-less...']      | [595.1, 46.0, ...]   |      12 | ['pre-heat oven the 350...']    | this is the recipe...          | ['white sugar', 'brown...']     |             11 |
-| 412 broccoli casserole               | 306168 |      40 |           50969 | 2008-05-30 00:00:00 | ['60-minutes-or-less...']      | [194.8, 20.0, ...]   |       6 | ['preheat oven to 350...']      | since there are already...     | ['frozen broccoli cuts...']     |              9 |
-|                                      |        |         |                |                     |                                |                      |         |                                 |                                |                                |                |
-|                                      |        |         |                |                     |                                |                      |         |                                 |                                |                                |                |
-| 412 broccoli casserole               | 306168 |      40 |           50969 | 2008-05-30 00:00:00 | ['60-minutes-or-less...']      | [194.8, 20.0, ...]   |       6 | ['preheat oven to 350...']      | since there are already...     | ['frozen broccoli cuts...']     |              9 |
-| 412 broccoli casserole               | 306168 |      40 |           50969 | 2008-05-30 00:00:00 | ['60-minutes-or-less...']      | [194.8, 20.0, ...]   |       6 | ['preheat oven to 350...']      | since there are already...     | ['frozen broccoli cuts...']     |              9 |
+'|    False |     True |\n|---------:|---------:|\n| 433.659  | 348.181  |\n|  12.213  |  18.4959 |\n|  34.559  |  26.1841 |\n|  44.9758 |  11.8418 |\n|  28.8938 |  31.12   |'
 
 
 
@@ -186,13 +197,8 @@ Alternative Hypothesis (H₁): The model is unfair. The precision for low-rated 
 The test statistic chosen is the difference in precision between the two groups, calculated as Precision (high-rated)−Precision (low-rated). To determine significance, I conducted a permutation test with 1,000 iterations, shuffling the group labels to simulate a null distribution of precision differences. The significance level (𝛼) was set at 0.05.
 
 The observed precision difference between the two groups was calculated as:
-Observed Precision Difference: 
-−
-0.0444
-−0.0444
-The permutation test yielded a 
-𝑝
-p-value of 0.135, which represents the proportion of shuffled precision differences greater than or equal to the observed difference in absolute value.
+Observed Precision Difference: −0.0444
+The permutation test yielded a p-value of 0.135, which represents the proportion of shuffled precision differences greater than or equal to the observed difference in absolute value.
 
 Since the p-value (0.135) is greater than the significance level of 0.05, I fail to reject the null hypothesis and conclude that the model does not exhibit unfairness. The precision differences observed between low-rated and high-rated recipe groups are likely due to random chance. This analysis demonstrates that the model performs equitably across recipes with varying ratings, with no significant bias observed between the two groups.
 
