@@ -10,7 +10,8 @@ Following is a data science project that dives into the relationship between the
 This project focuses on understanding patterns in two datasets: recipes and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
 This question matters because understanding the attributes of healthy recipes can empower individuals to make informed choices, leading to better health outcomes. Additionally, it can help food enthusiasts, nutritionists, and recipe creators craft meals that align with diverse dietary needs and preferences. 
 
-Recipe: the first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe. 
+## Recipe: 
+> the first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
 
 | Name                          |    ID  | Minutes | Contrib ID | Submitted   | Tags                              | Nutrition                  | Steps | Ingredients Count | Description                                 |
 |-------------------------------|--------|---------|------------|-------------|-----------------------------------|---------------------------|-------|-------------------|---------------------------------------------|
@@ -57,7 +58,7 @@ In order to properly use the datasets and discover accurate results, I performed
 8. Added a healthy-2 column
     There were two different columns that contained the word'healthy', they were 'healthy' and 'healthy-2', so I did the same process for 'healthy-2'. This is a boolean column in which a true represents the tag 'healthy-2' being in the recipes' tags and false if not.
 
-Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying the most essential columns for this project, as there are so many columns. 
+Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying some of the columns in this dataset, as there are so many columns. 
 
 | Name                      | ID      | Minutes | Contributor | Date       | Tags                               | Nutrition         | Steps | Description                                 | Ingredients                             | Rating | Review                                              |
 |---------------------------|---------|---------|-------------|------------|------------------------------------|-------------------|-------|---------------------------------------------|-----------------------------------------|--------|----------------------------------------------------|
