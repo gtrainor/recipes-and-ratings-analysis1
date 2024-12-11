@@ -121,7 +121,7 @@ The results strongly indicate that the missingness of rating is systematically r
 
 
 <iframe
-  src="assets/permutation_test_distribution.htm"
+  src="assets/permutation_test_distribution.html"
   width="800"
   height="600"
   frameborder="0"
