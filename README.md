@@ -179,6 +179,23 @@ For my final model, I chose a Random Forest Classifier. The model was optimized 
 
 # Fairness Analysis
 
+In this fairness analysis, I examined whether the model's precision differs significantly between two groups based on recipe ratings. Group X comprises low-rated recipes (rating < 3), while Group Y includes high-rated recipes (rating ≥ 3). The evaluation metric used for this analysis is precision, as it measures the proportion of correctly identified healthy recipes out of all predicted healthy recipes within each group.
+
+Null Hypothesis (H₀): The model is fair. The precision for low-rated and high-rated recipes is roughly the same, and any observed differences are due to random chance.
+Alternative Hypothesis (H₁): The model is unfair. The precision for low-rated and high-rated recipes is significantly different.
+The test statistic chosen is the difference in precision between the two groups, calculated as Precision (high-rated)−Precision (low-rated). To determine significance, I conducted a permutation test with 1,000 iterations, shuffling the group labels to simulate a null distribution of precision differences. The significance level (𝛼) was set at 0.05.
+
+The observed precision difference between the two groups was calculated as:
+Observed Precision Difference: 
+−
+0.0444
+−0.0444
+The permutation test yielded a 
+𝑝
+p-value of 0.135, which represents the proportion of shuffled precision differences greater than or equal to the observed difference in absolute value.
+
+Since the p-value (0.135) is greater than the significance level of 0.05, I fail to reject the null hypothesis and conclude that the model does not exhibit unfairness. The precision differences observed between low-rated and high-rated recipe groups are likely due to random chance. This analysis demonstrates that the model performs equitably across recipes with varying ratings, with no significant bias observed between the two groups.
+
 
 
 
