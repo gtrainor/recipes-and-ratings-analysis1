@@ -3,11 +3,11 @@ Author: Grace Trainor
 
 # Preview 
 
-Following is a data science project that dives into the relationship between the recipe tag 'healthy', other tags, and other nutrional features, such as sodium. 
+Following is a data science project that dives into the relationship between the recipe tag '`healthy`', other tags, and other nutrional features, such as sodium. 
 
 # Introduction
 
-This project focuses on understanding patterns in two datasets: recipes and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
+This project focuses on understanding patterns in two datasets: `recipe` and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
 This question matters because understanding the attributes of healthy recipes can empower individuals to make informed choices, leading to better health outcomes. Additionally, it can help food enthusiasts, nutritionists, and recipe creators craft meals that align with diverse dietary needs and preferences. 
 
 ### Recipe:
@@ -105,8 +105,15 @@ The scatter plot visualizes the relationship between Sodium and Protein content 
 
 The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as 'healthy' and 'unhealthy.' By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
 
-'|    False |     True |\n|---------:|---------:|\n| 433.659  | 348.181  |\n|  12.213  |  18.4959 |\n|  34.559  |  26.1841 |\n|  44.9758 |  11.8418 |\n|  28.8938 |  31.12   |'
-
+| Nutrient        | False   | True    |
+|-----------------|---------|---------|
+| calories        | 433.66  | 348.18  |
+| carbohydrates   | 12.21   | 18.50   |
+| protein         | 34.56   | 26.18   |
+| saturated_fat   | 44.98   | 11.84   |
+| sodium          | 28.89   | 31.12   |
+| sugar           | 60.02   | 83.14   |
+| total_fat       | 36.06   | 10.99   |
 
 # Assessment of Missingness
 
@@ -124,9 +131,9 @@ After going through rating', 'description,' and 'review,' I thought about what w
 
 **Alternative Hypothesis:** The missingless of ratings is dependent on 'Calories'. 
 
-Test Statistic: The difference in means of missing and non-missing ratings, with the column that is being shuffled changing. 
+**Test Statistic:** The difference in means of missing and non-missing ratings, with the column that is being shuffled changing. 
 
-Significance Level: 0.05
+**Significance Level:** 0.05
 
 The observed statistic was 0.0 (and in a second test, 0.00014), which is less than the significance level and so I rejected the null. 
 
@@ -194,8 +201,12 @@ For my final model, I chose a Random Forest Classifier. The model was optimized 
 
 In this fairness analysis, I examined whether the model's precision differs significantly between two groups based on recipe ratings. Group X comprises low-rated recipes (rating < 3), while Group Y includes high-rated recipes (rating ≥ 3). The evaluation metric used for this analysis is precision, as it measures the proportion of correctly identified healthy recipes out of all predicted healthy recipes within each group.
 
-**Null Hypothesis (H₀):** The model is fair. The precision for low-rated and high-rated recipes is roughly the same, and any observed differences are due to random chance.
-**Alternative Hypothesis (H₁):** The model is unfair. The precision for low-rated and high-rated recipes is significantly different.
+**Null Hypothesis (H₀):** 
+
+The model is fair. The precision for low-rated and high-rated recipes is roughly the same, and any observed differences are due to random chance.
+
+**Alternative Hypothesis (H₁):** 
+The model is unfair. The precision for low-rated and high-rated recipes is significantly different.
 
 The test statistic chosen is the difference in precision between the two groups, calculated as Precision (high-rated)−Precision (low-rated). To determine significance, I conducted a permutation test with 1,000 iterations, shuffling the group labels to simulate a null distribution of precision differences. The significance level (𝛼) was set at 0.05.
 
