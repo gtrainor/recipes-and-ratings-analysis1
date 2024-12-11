@@ -10,7 +10,7 @@ Following is a data science project that dives into the relationship between the
 This project focuses on understanding patterns in two datasets: recipes and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
 This question matters because understanding the attributes of healthy recipes can empower individuals to make informed choices, leading to better health outcomes. Additionally, it can help food enthusiasts, nutritionists, and recipe creators craft meals that align with diverse dietary needs and preferences. 
 
-**Recipe:**
+### Recipe:
 > The first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
 
 | Name                          |    ID  | Minutes | Contrib ID | Submitted   | Tags                              | Nutrition                  | Steps | Ingredients Count | Description                                 |
@@ -22,7 +22,7 @@ This question matters because understanding the attributes of healthy recipes ca
 | 2000 meatloaf                | 475785 |      90 |    2202916 | 2012-03-06  | ['main-dish', 'meatloaf']         | [267.0, 30, 48, 29]       | 17    | 13                | Mediterranean-inspired meatloaf with eggs. |
 
 
-**Interactions:**
+### Interactions: 
 > The second dataset, which has 731927 rows and 5 columns. Each row represents a review for a recipe. 
 
 | User ID   | Recipe ID  | Date       | Rating | Review                                               |
@@ -68,7 +68,7 @@ Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the fir
 | 412 broccoli casserole    | 306168  | 40      | 50969       | 2008-05-30 | [side dishes, broccoli, easy]      | [194.8, 20, 6...] | 6    | Better than green bean casserole.           | [broccoli, cheese, soup...]             | 5      | Best broccoli casserole I've made. Flavorful!     |
 
 
-**Univariate Analysis**
+### Univariate Analysis
 
 The bar chart below illustrates the average ratings for different tag combinations, with a focus on those receiving ratings of 4 and above. Looking specifically at the tags, 'vegetarian', 'low-fat', 'holiday', 'healthy-2', 'dessert','healthy'. The highest-ranked combinations were 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'. These combinations suggest that recipes which are both vegetarian and low in fat are highly rated, and adding the "healthy-2" tag further enhances the appeal. This is an interesting discovery and makes one wonder if there is a correlation, or at least connection, between 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'.
 <iframe
@@ -89,7 +89,7 @@ Below is an interesting pie chart visualizing the top 10 used tags and their fre
   frameborder="0"
 ></iframe>
 
-**Bivariate Analysis**
+#### Bivariate Analysis
 
 The scatter plot visualizes the relationship between Sodium and Protein content in recipes, categorized by the 'healthy' and 'healthy-2' tags. In the plot, recipes labeled as "healthy" (green) tend to cluster in regions with lower sodium levels and varying protein amounts, indicating that healthier recipes often prioritize low sodium content while maintaining a range of protein levels. The pattern suggests that lower sodium content is a consistent trait in recipes labeled as healthy, while protein varies more widely. Additionally there seems to be a greater amount of 'unhealthy' recipes in comparison to the 'healthy' recipes, as the red colors seems to outweight the green ones substantially so. 
 
@@ -101,7 +101,7 @@ The scatter plot visualizes the relationship between Sodium and Protein content 
   frameborder="0"
 ></iframe>
 
-**Interesting Aggregates**
+### Interesting Aggregates
 
 The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as 'healthy' and 'unhealthy.' By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
 
@@ -112,17 +112,17 @@ The pivot table provides a comparison of the average nutritional values, such as
 
 When looking at missingness, the columns with the main missing are 'rating', 'description,' and 'review.'
 
-**NMAR Analysis**
+### NMAR Analysis
 
 I think the column 'review' in the dataset appears to be Not Missing At Random (NMAR), as its absence is likely tied to the behavior of individuals choosing not to leave a review. This pattern makes sense because people might not leave reviews for various reasons, such as lack of interest, forgetting, or having neutral feelings about the recipe. The missingness is therefore dependent on an underlying, unobserved factor related to the individual's decision-making process, making it NMAR rather than completely random.
 
-**Missing Dependency**
+### Missing Dependency
 
 After going through rating', 'description,' and 'review,' I thought about what was missing and why. I didn't believe that the descriptions being missing seemed to have a pattern and wondered if missing ratings did. So I investigated whether the missiness in the 'rating' column was dependent on the 'calories' columns because I could see how the negative connotation that society has with calories could relate to a lack of a review. 
 
-Null Hypothesis: The missigness of ratings are MCAR
+**Null Hypothesis:** The missigness of ratings are MCAR
 
-Alternative Hypothesis: The missingless of ratings is dependent on 'Calories'. 
+**Alternative Hypothesis:** The missingless of ratings is dependent on 'Calories'. 
 
 Test Statistic: The difference in means of missing and non-missing ratings, with the column that is being shuffled changing. 
 
@@ -146,13 +146,13 @@ In summary, the empirical distribution visualizes the range of differences in me
 
 I was curious to see if recipes with tags 'healthy' or 'healthy-2' were rated differently than tags without them to help me further understand what could help me predict 'healthy.' To understand this query, I ran a hypothesis test. 
 
-Null Hypothesis: There is no difference in the ratings of recipes with the tags 'healthy' or 'healthy-2' compared to those without these tags.
+**Null Hypothesis:** There is no difference in the ratings of recipes with the tags 'healthy' or 'healthy-2' compared to those without these tags.
 
-Alternative Hypothesis: Recipes with the tags 'healthy' or 'healthy-2' receive different ratings compared to those without these tags.
+**Alternative Hypothesis:** Recipes with the tags 'healthy' or 'healthy-2' receive different ratings compared to those without these tags.
 
-Test Statistic: he difference in the average ratings (means) between the two groups—recipes with the 'healthy' or 'healthy-2' tags and those without these tags
+**Test Statistic:** The difference in the average ratings (means) between the two groups—recipes with the 'healthy' or 'healthy-2' tags and those without these tags
 
-Significance Level: 0.05
+**Significance Level:** 0.05
 
 The p-values for the "healthy" and "healthy-2" tags provide interesting insights into how these labels influence recipe ratings. The p-value for the "healthy" tag is 0.0, which is highly significant and leads us to reject the null hypothesis, indicating that recipes labeled as "healthy" are rated differently from those without the tag. This suggests that the "healthy" label does influence ratings, possibly due to consumer biases or associations with health-conscious behaviors. In contrast, the p-value for the "healthy-2" tag is 0.6281, which is not significant, meaning we fail to reject the null hypothesis for this tag. This suggests that the "healthy-2" label does not have a statistically significant effect on recipe ratings. The difference between the two results suggests that not all health-related tags are perceived equally, with the "healthy" label having a stronger impact on ratings than "healthy-2". This could reflect differing consumer perceptions of these tags, with the "healthy" label possibly carrying more weight in terms of expectations around nutrition and quality. Further research could explore why the "healthy" tag has a significant impact while the "healthy-2" tag does not, potentially investigating the characteristics of recipes with these labels or surveying users to understand their perceptions.
 
@@ -194,15 +194,16 @@ For my final model, I chose a Random Forest Classifier. The model was optimized 
 
 In this fairness analysis, I examined whether the model's precision differs significantly between two groups based on recipe ratings. Group X comprises low-rated recipes (rating < 3), while Group Y includes high-rated recipes (rating ≥ 3). The evaluation metric used for this analysis is precision, as it measures the proportion of correctly identified healthy recipes out of all predicted healthy recipes within each group.
 
-Null Hypothesis (H₀): The model is fair. The precision for low-rated and high-rated recipes is roughly the same, and any observed differences are due to random chance.
-Alternative Hypothesis (H₁): The model is unfair. The precision for low-rated and high-rated recipes is significantly different.
+**Null Hypothesis (H₀):** The model is fair. The precision for low-rated and high-rated recipes is roughly the same, and any observed differences are due to random chance.
+**Alternative Hypothesis (H₁):** The model is unfair. The precision for low-rated and high-rated recipes is significantly different.
+
 The test statistic chosen is the difference in precision between the two groups, calculated as Precision (high-rated)−Precision (low-rated). To determine significance, I conducted a permutation test with 1,000 iterations, shuffling the group labels to simulate a null distribution of precision differences. The significance level (𝛼) was set at 0.05.
 
 The observed precision difference between the two groups was calculated as:
-Observed Precision Difference: −0.0444
-The permutation test yielded a p-value of 0.135, which represents the proportion of shuffled precision differences greater than or equal to the observed difference in absolute value.
+**Observed Precision Difference: −0.0444**
+The permutation test yielded a **p-value of 0.135**, which represents the proportion of shuffled precision differences greater than or equal to the observed difference in absolute value.
 
-Since the p-value (0.135) is greater than the significance level of 0.05, I fail to reject the null hypothesis and conclude that the model does not exhibit unfairness. The precision differences observed between low-rated and high-rated recipe groups are likely due to random chance. This analysis demonstrates that the model performs equitably across recipes with varying ratings, with no significant bias observed between the two groups.
+Since the **p-value (0.135)** is greater than the significance level of 0.05, I fail to reject the null hypothesis and conclude that the model does not exhibit unfairness. The precision differences observed between low-rated and high-rated recipe groups are likely due to random chance. This analysis demonstrates that the model performs equitably across recipes with varying ratings, with no significant bias observed between the two groups.
 
 
 
