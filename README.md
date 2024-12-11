@@ -10,8 +10,8 @@ Following is a data science project that dives into the relationship between the
 This project focuses on understanding patterns in two datasets: recipes and ratings posted on Food.com since 2008. Recipes play a crucial role in shaping our meals, our days, and sometimes even our well-being. Beyond taste and satisfaction, having access to healthy recipes that properly fuel and fulfill one’s nutritional needs is vital for daily life. In this project, we aim to answer the central question: "What are the key factors that determine whether a recipe is 'healthy'?"
 This question matters because understanding the attributes of healthy recipes can empower individuals to make informed choices, leading to better health outcomes. Additionally, it can help food enthusiasts, nutritionists, and recipe creators craft meals that align with diverse dietary needs and preferences. 
 
-## Recipe: 
-> the first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
+**Recipe:**
+> The first dataset, which has 83782 rows and 12 columns. Every row pertains to a unique recipe (below doesn't show all of the columns in the dataset, just a few.)
 
 | Name                          |    ID  | Minutes | Contrib ID | Submitted   | Tags                              | Nutrition                  | Steps | Ingredients Count | Description                                 |
 |-------------------------------|--------|---------|------------|-------------|-----------------------------------|---------------------------|-------|-------------------|---------------------------------------------|
@@ -22,7 +22,8 @@ This question matters because understanding the attributes of healthy recipes ca
 | 2000 meatloaf                | 475785 |      90 |    2202916 | 2012-03-06  | ['main-dish', 'meatloaf']         | [267.0, 30, 48, 29]       | 17    | 13                | Mediterranean-inspired meatloaf with eggs. |
 
 
-Interactions: the second dataset, which has 731927 rows and 5 columns. Each row represents a review for a recipe. 
+**Interactions:**
+> The second dataset, which has 731927 rows and 5 columns. Each row represents a review for a recipe. 
 
 | User ID   | Recipe ID  | Date       | Rating | Review                                               |
 |-----------|------------|------------|--------|-----------------------------------------------------|
@@ -42,21 +43,21 @@ This question is important because understanding these associations can help ind
 In order to properly use the datasets and discover accurate results, I performed data cleaning on these two datasets. 
 
 1. Left merge the recipes and interactions datasets on id and recipe_id.
-    This allows for the recipes to be connected with their reviews and ratings.
+> This allows for the recipes to be connected with their reviews and ratings.
 2. Fill all ratings 0 with np.nan
-    Ratings are typically from 1-5, with 1 being the lowest and 5 being the highest. 0 as a rating doesn't make sense and rather is meant to represent missing ratings. So to fix this, I represent all 0 ratings as np.nan
+> Ratings are typically from 1-5, with 1 being the lowest and 5 being the highest. 0 as a rating doesn't make sense and rather is meant to represent missing ratings. So to fix this, I represent all 0 ratings as np.nan
 3. Add column 'avg_rating' containing average rating per recipe.
-    This allows for a deeper understand of the overall consensus for a recipe, across different users. 
+> This allows for a deeper understand of the overall consensus for a recipe, across different users. 
 4. Split values in the nutrition column to individual columns. 
-    The values are objects and in order to use them properly it was essentially to turn them into individual, usable columns. 
+> The values are objects and in order to use them properly it was essentially to turn them into individual, usable columns. 
 5. Convert submitted and date to datetime.
-    Converted these two columns to datetime objects in order to easily do analysis over time
+> Converted these two columns to datetime objects in order to easily do analysis over time
 6. Turned tags into a list
-    Tags looks to be made up of lists, but it is actually made up of objects. So I transformed them into actual lists that I could access.
+> Tags looks to be made up of lists, but it is actually made up of objects. So I transformed them into actual lists that I could access.
 7. Added a healthy column 
-    This is a boolean column in which a true represents the tag 'healthy' being in the recipes' tags and false if not.
+> This is a boolean column in which a true represents the tag 'healthy' being in the recipes' tags and false if not.
 8. Added a healthy-2 column
-    There were two different columns that contained the word'healthy', they were 'healthy' and 'healthy-2', so I did the same process for 'healthy-2'. This is a boolean column in which a true represents the tag 'healthy-2' being in the recipes' tags and false if not.
+> There were two different columns that contained the word'healthy', they were 'healthy' and 'healthy-2', so I did the same process for 'healthy-2'. This is a boolean column in which a true represents the tag 'healthy-2' being in the recipes' tags and false if not.
 
 Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the first 5 rows of the cleaned dataset from a visual. This is just displaying some of the columns in this dataset, as there are so many columns. 
 
@@ -67,7 +68,7 @@ Our cleaned dataframe ended up with 234429 rows and 26 columns. Here are the fir
 | 412 broccoli casserole    | 306168  | 40      | 50969       | 2008-05-30 | [side dishes, broccoli, easy]      | [194.8, 20, 6...] | 6    | Better than green bean casserole.           | [broccoli, cheese, soup...]             | 5      | Best broccoli casserole I've made. Flavorful!     |
 
 
-Univariate Analysis (delete this once i fix font)
+**Univariate Analysis**
 
 The bar chart below illustrates the average ratings for different tag combinations, with a focus on those receiving ratings of 4 and above. Looking specifically at the tags, 'vegetarian', 'low-fat', 'holiday', 'healthy-2', 'dessert','healthy'. The highest-ranked combinations were 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'. These combinations suggest that recipes which are both vegetarian and low in fat are highly rated, and adding the "healthy-2" tag further enhances the appeal. This is an interesting discovery and makes one wonder if there is a correlation, or at least connection, between 'vegetarian' and 'low-fat', as well as 'vegetarian,' 'low-fat,' and 'healthy-2'.
 <iframe
@@ -88,7 +89,8 @@ Below is an interesting pie chart visualizing the top 10 used tags and their fre
   frameborder="0"
 ></iframe>
 
-Bivariate Analysis (delete this once i fix font)
+**Bivariate Analysis**
+
 The scatter plot visualizes the relationship between Sodium and Protein content in recipes, categorized by the 'healthy' and 'healthy-2' tags. In the plot, recipes labeled as "healthy" (green) tend to cluster in regions with lower sodium levels and varying protein amounts, indicating that healthier recipes often prioritize low sodium content while maintaining a range of protein levels. The pattern suggests that lower sodium content is a consistent trait in recipes labeled as healthy, while protein varies more widely. Additionally there seems to be a greater amount of 'unhealthy' recipes in comparison to the 'healthy' recipes, as the red colors seems to outweight the green ones substantially so. 
 
 
@@ -99,23 +101,22 @@ The scatter plot visualizes the relationship between Sodium and Protein content 
   frameborder="0"
 ></iframe>
 
-Interesting Aggregates (delete this once i fix font)
+**Interesting Aggregates**
 
 The pivot table provides a comparison of the average nutritional values, such as sodium, saturated fat, total fat, carbohydrates, sugar, calories, and protein, for recipes categorized as 'healthy' and 'unhealthy.' By summarizing this data, we can observe key nutritional differences between the two groups. Generally, healthy recipes are characterized by lower amounts of unhealthy nutrients, such as sodium, saturated fat, and total fat, while offering a more balanced nutritional profile. This table is an effective tool for identifying common nutritional traits in healthy versus unhealthy recipes, helping to uncover the overall qualities of healthier meal choices.
 
 '|    False |     True |\n|---------:|---------:|\n| 433.659  | 348.181  |\n|  12.213  |  18.4959 |\n|  34.559  |  26.1841 |\n|  44.9758 |  11.8418 |\n|  28.8938 |  31.12   |'
 
 
-
 # Assessment of Missingness
 
 When looking at missingness, the columns with the main missing are 'rating', 'description,' and 'review.'
 
-NMAR Analysis (delete after fixing font)
+**NMAR Analysis**
 
 I think the column 'review' in the dataset appears to be Not Missing At Random (NMAR), as its absence is likely tied to the behavior of individuals choosing not to leave a review. This pattern makes sense because people might not leave reviews for various reasons, such as lack of interest, forgetting, or having neutral feelings about the recipe. The missingness is therefore dependent on an underlying, unobserved factor related to the individual's decision-making process, making it NMAR rather than completely random.
 
-Missing Dependency (delete after ifxing font)
+**Missing Dependency**
 
 After going through rating', 'description,' and 'review,' I thought about what was missing and why. I didn't believe that the descriptions being missing seemed to have a pattern and wondered if missing ratings did. So I investigated whether the missiness in the 'rating' column was dependent on the 'calories' columns because I could see how the negative connotation that society has with calories could relate to a lack of a review. 
 
